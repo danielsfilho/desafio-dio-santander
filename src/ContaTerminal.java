@@ -1,5 +1,6 @@
 
 import entities.ContaBanco;
+import exceptions.ContaBancoException;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -25,10 +26,13 @@ public class ContaTerminal {
         Double saldo = sc.nextDouble();
 
         // Get the values entered in the terminal
-        ContaBanco conta = new ContaBanco(numConta, numAgencia, cliente, saldo);
-
-        // Display account created message
-        System.out.println(conta);
+        try{
+            ContaBanco conta = new ContaBanco(numConta, numAgencia, cliente, saldo);
+            // Display account created message
+            System.out.println(conta);
+        }catch(ContaBancoException e) {
+            e.printStackTrace();
+        }
 
         sc.close();
     }
